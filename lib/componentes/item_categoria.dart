@@ -1,7 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:navegacao/models/categorias.dart';
+import 'package:navegacao/telas/tela_produtos.dart';
 
 class ItemCategoria extends StatelessWidget {
+
+  void selecionarCategoria(BuildContext context){
+    //PROGRAMACAO
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_){
+        return TelaProdutos(categoria);
+      } )
+    );
+    
+  }
 
   final Categoria categoria;
 
@@ -9,7 +20,9 @@ class ItemCategoria extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () => selecionarCategoria(context),
+      child: Container(
       child: Text(categoria.titulo),
       padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -22,6 +35,7 @@ class ItemCategoria extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomLeft
           )
+      )
       ),
     );
   }
