@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/categorias.dart';
 
-
 const mockCategories = [
   Categoria(
     id: 'c1',

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:navegacao/telas/tela_categoria.dart';
+import 'package:navegacao/telas/tela_produtos.dart';
+import 'package:navegacao/utils/rotas.dart';
 
 void main() {
   runApp(MeuCardapio());
@@ -13,7 +15,11 @@ class MeuCardapio extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.blue,
       ),
-      home: TelasCategorias(),
+      //home: TelaCategorias(),
+      routes:{
+       Rotas.HOME : (ctx) => TelaCategorias(),
+       Rotas.PRODUTOS : (ctx) => TelaProdutos(),
+     }
     );
   }
 }

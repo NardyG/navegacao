@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:navegacao/componentes/item_categoria.dart';
 import 'package:navegacao/data/mock_data.dart';
 
-class TelasCategorias extends StatelessWidget {
+class TelaCategorias extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
