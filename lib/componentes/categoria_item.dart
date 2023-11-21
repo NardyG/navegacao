@@ -1,8 +1,5 @@
-
-
 import 'package:navegacao/telas/tela_produtos.dart';
 import 'package:flutter/material.dart';
-
 import '../models/categorias.dart';
 import '../utils/rotas.dart';
 

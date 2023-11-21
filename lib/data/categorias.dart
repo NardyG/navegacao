@@ -5,7 +5,7 @@ import 'dart:convert' as convert;
 
 Future<List<dynamic>> dados_categoria() async{
   final response = await http
-      .get(Uri.parse('http://localhost:3001/categoria'));
+      .get(Uri.parse('http://localhost:3306/categoria'));
   if (response.statusCode == 200) {
     var jsonResponse = convert.jsonDecode(response.body);
     return jsonResponse;

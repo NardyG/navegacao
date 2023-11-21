@@ -1,11 +1,9 @@
-import 'package:navegacao/telas/tela_produto.dart';
+import 'package:navegacao/telas/tela_produtos.dart';
 import 'package:navegacao/data/produtos.dart';
 import 'package:navegacao/models/produtos.dart';
 import 'package:flutter/material.dart';
 import 'utils/rotas.dart';
-
-//depois de programar a tela
-import 'telas/tela_categorias.dart';
+import 'Telas/tela_categoria.dart';
  
 void main() => runApp(AppCardapio());
  // style: Theme.of(context).textTheme.titleSmall, vai no categoria
@@ -25,7 +23,6 @@ class AppCardapio extends StatelessWidget {
           ) 
         )
       ),
-      //home: TelaCategorias(),
       routes: {
         Rotas.HOME : (ctx) => TelaCategorias(),
         Rotas.PRODUTOS : (ctx) => TelaProdutos(produtosValidos), 

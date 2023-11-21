@@ -2,7 +2,7 @@ import 'package:navegacao/data/categorias.dart';
 import 'package:navegacao/models/categorias.dart';
 import 'package:flutter/material.dart';
 import '../componentes/categoria_item.dart';
-import '../data/mock_data.dart';
+
 
 class TelaCategorias extends StatefulWidget {
   
