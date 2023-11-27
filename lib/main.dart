@@ -12,7 +12,7 @@ void main() => runApp(AppCardapio());
 // Classe principal do aplicativo que herda de StatelessWidget
 class AppCardapio extends StatelessWidget {
   // Lista de produtos válidos obtida a partir dos dados de produtos fictícios
-  Future<List<Produto>> produtosValidos2 = dadosCategoria();
+  Future<List> produtosValidos = dadosCategoria();
 
   // Método que constrói a interface do aplicativo
   @override
@@ -35,7 +35,7 @@ class AppCardapio extends StatelessWidget {
       routes: {
         // Definição das rotas do aplicativo
         Rotas.HOME: (ctx) => TelaCategorias(), // Rota para a tela de categorias
-        Rotas.PRODUTOS: (ctx) => TelaProdutos(produtosValidos2), // Rota para a tela de produtos
+        Rotas.PRODUTOS: (ctx) => TelaProdutos(produtosValidos), // Rota para a tela de produtos
       },
     );
   }
