@@ -1,25 +1,26 @@
+// Importa os pacotes necessários
 import 'package:flutter/material.dart';
-import 'package:navegacao/componentes/item_categoria.dart';
-import 'package:navegacao/data/mock_data.dart';
+import 'package:navegacao/componentes/item_categoria.dart'; // Importa o componente CategoriaItem
+import 'package:navegacao/data/mock_data.dart'; // Importa os dados fictícios de categorias
 
+// Classe que representa a tela de categorias
 class TelaCategorias extends StatelessWidget {
-  
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar : AppBar(
+      appBar: AppBar(
         title: Text("Cardápio do CEFETMG"),
       ),
       body: GridView(
         padding: const EdgeInsets.all(25),
-        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent( //basicamente uma barra de rolagem
-          maxCrossAxisExtent: 200, //cada elemento tem extensão de 200
-          childAspectRatio: 3/2, //proporção de cada elemento dentro do grid
-          crossAxisSpacing: 20, // eixo cruzado de 20
-          mainAxisSpacing: 20 //espaçamento no main olhar
-    
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
+        // Cria uma lista de widgets CategoriaItem com base nas categorias fictícias
         children: mockCategories.map((e) {
           return CategoriaItem(e);
         }).toList(),

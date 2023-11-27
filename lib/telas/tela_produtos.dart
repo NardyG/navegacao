@@ -5,6 +5,7 @@ import '../models/produtos.dart';
 class TelaProdutos extends StatefulWidget {
   static const routeName = '/produtos';
   final List<Produto> produtosValidos;
+
   TelaProdutos(this.produtosValidos);
 
   @override
@@ -17,24 +18,19 @@ class _TelaProdutosState extends State<TelaProdutos> {
 
   @override
   void didChangeDependencies() {
-    // TODO: implement didChangeDependencies
-    final routeArgs =
-        ModalRoute.of(context)!.settings.arguments as Map<String, String>;
+    super.didChangeDependencies();
+
+    // Obtém os argumentos da rota
+    final routeArgs = ModalRoute.of(context)!.settings.arguments as Map<String, String>;
     tituloCategoria = routeArgs['title']!;
     final categoryId = routeArgs['id'];
-    displayProdutos = widget.produtosValidos.where((meal) {
-      return meal.categories.contains(categoryId);
+
+    // Filtra os produtos válidos para exibir apenas os da categoria específica
+    displayProdutos = widget.produtosValidos.where((produto) {
+      return produto.categories.contains(categoryId);
     }).toList();
-    super.didChangeDependencies();
   }
 
-  // void _removeMeal(String mealId) {
-  //   setState(() {
-  //     displayedMeals!.removeWhere((meal) => meal.id == mealId);
-  //   });
-  // }
-
-  // final String categoryId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,7 +44,6 @@ class _TelaProdutosState extends State<TelaProdutos> {
             duration: displayProdutos![index].duration,
             cost: displayProdutos![index].cost,
           );
-          // return Text(displayedMeals[index].title);
         },
         itemCount: displayProdutos!.length,
       ),

@@ -1,33 +1,42 @@
-import 'package:navegacao/telas/tela_produtos.dart';
-import 'package:navegacao/data/produtos.dart';
-import 'package:navegacao/models/produtos.dart';
-import 'package:flutter/material.dart';
-import 'utils/rotas.dart';
-import 'Telas/tela_categoria.dart';
- 
+// Importa os pacotes necessários
+import 'package:navegacao/telas/tela_produtos.dart'; // Importa a tela de produtos
+import 'package:navegacao/data/produtos.dart'; // Importa os dados de produtos
+import 'package:navegacao/models/produtos.dart'; // Importa o modelo de produtos
+import 'package:flutter/material.dart'; // Importa o pacote de Flutter para construção da interface
+import 'utils/rotas.dart'; // Importa as rotas definidas na aplicação
+import 'Telas/tela_categoria.dart'; // Importa a tela de categorias
+
+// Função principal que inicializa o aplicativo
 void main() => runApp(AppCardapio());
- // style: Theme.of(context).textTheme.titleSmall, vai no categoria
+
+// Classe principal do aplicativo que herda de StatelessWidget
 class AppCardapio extends StatelessWidget {
+  // Lista de produtos válidos obtida a partir dos dados de produtos fictícios
   List<Produto> produtosValidos = dummyProdutos;
+
+  // Método que constrói a interface do aplicativo
   @override
   Widget build(BuildContext context) {
+    // Retorna o widget MaterialApp, que é a estrutura básica do aplicativo Flutter
     return MaterialApp(
-      title: 'Cardápio',
+      title: 'Cardápio', // Título do aplicativo
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        fontFamily: 'Schyler',
+        // Configuração do tema do aplicativo
+        primarySwatch: Colors.blue, // Cor primária do aplicativo
+        fontFamily: 'Schyler', // Fonte padrão do aplicativo
         textTheme: ThemeData.light().textTheme.copyWith(
-          titleSmall : const TextStyle(
+          // Configuração do tema de texto
+          titleSmall: const TextStyle(
             fontSize: 20,
-            fontFamily: "Schyler"
-          ) 
-        )
+            fontFamily: "Schyler",
+          ),
+        ),
       ),
       routes: {
-        Rotas.HOME : (ctx) => TelaCategorias(),
-        Rotas.PRODUTOS : (ctx) => TelaProdutos(produtosValidos), 
-      }
-      
+        // Definição das rotas do aplicativo
+        Rotas.HOME: (ctx) => TelaCategorias(), // Rota para a tela de categorias
+        Rotas.PRODUTOS: (ctx) => TelaProdutos(produtosValidos), // Rota para a tela de produtos
+      },
     );
   }
 }
