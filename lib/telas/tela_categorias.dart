@@ -1,11 +1,11 @@
 // Importa os pacotes necessários
 import 'package:flutter/material.dart';
 import 'package:navegacao/componentes/item_categoria.dart'; // Importa o componente CategoriaItem
-import 'package:navegacao/data/mock_data.dart'; // Importa os dados fictícios de categorias
+import 'package:navegacao/data/categorias.dart';
+import '../componentes/categoria_item.dart'; // Importa os dados fictícios de categorias
 
 // Classe que representa a tela de categorias
 class TelaCategorias extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,7 @@ class TelaCategorias extends StatelessWidget {
           mainAxisSpacing: 20,
         ),
         // Cria uma lista de widgets CategoriaItem com base nas categorias fictícias
-        children: mockCategories.map((e) {
+        children: dadosCategoria().map((e) {
           return CategoriaItem(e);
         }).toList(),
       ),
