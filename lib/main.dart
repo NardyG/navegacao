@@ -1,41 +1,60 @@
-// Importa os pacotes necessários
-import 'package:navegacao/data/categorias.dart';
-import 'package:navegacao/telas/tela_produtos.dart'; // Importa a tela de produtos
-import 'package:navegacao/models/produtos.dart'; // Importa o modelo de produtos
-import 'package:flutter/material.dart'; // Importa o pacote de Flutter para construção da interface
-import 'utils/rotas.dart'; // Importa as rotas definidas na aplicação
-import 'Telas/tela_categoria.dart'; // Importa a tela de categorias
+import 'package:flutter/material.dart';
 
-// Função principal que inicializa o aplicativo
+import 'Telas/tela_categoria.dart';
+import 'Telas/tela_produtos.dart';
+import 'data/produtos.dart';
+import 'models/produtos.dart';
+import 'utils/rotas.dart';
+
 void main() => runApp(AppCardapio());
 
-// Classe principal do aplicativo que herda de StatelessWidget
 class AppCardapio extends StatelessWidget {
-  // Lista de produtos válidos obtida a partir dos dados de produtos fictícios
-  Future<List> produtosValidos = dadosCategoria();
+  Future<List<dynamic>> teste = categoria_produtos();
 
-  // Método que constrói a interface do aplicativo
   @override
   Widget build(BuildContext context) {
-    // Retorna o widget MaterialApp, que é a estrutura básica do aplicativo Flutter
     return MaterialApp(
-      title: 'Cardápio', // Título do aplicativo
+      title: 'Cardápio',
       theme: ThemeData(
-        // Configuração do tema do aplicativo
-        primarySwatch: Colors.blue, // Cor primária do aplicativo
-        fontFamily: 'Schyler', // Fonte padrão do aplicativo
+        primarySwatch: Colors.blue,
+        fontFamily: 'Schyler',
         textTheme: ThemeData.light().textTheme.copyWith(
-          // Configuração do tema de texto
-          titleSmall: const TextStyle(
+              titleSmall: const TextStyle(
             fontSize: 20,
             fontFamily: "Schyler",
           ),
         ),
       ),
       routes: {
-        // Definição das rotas do aplicativo
-        Rotas.HOME: (ctx) => TelaCategorias(), // Rota para a tela de categorias
-        Rotas.PRODUTOS: (ctx) => TelaProdutos(produtosValidos), // Rota para a tela de produtos
+        Rotas.HOME: (ctx) => TelaCategorias(),
+        Rotas.PRODUTOS: (ctx) => FutureBuilder<List<dynamic>>(
+          future: teste,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Scaffold(
+                body: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+            } else {
+              if (snapshot.hasError) {
+                return Scaffold(
+                  body: Center(
+                    child: Text('Erro ao carregar os produtos!'),
+                  ),
+                );
+              } else {
+                // Converte a lista dinâmica para List<Produto>
+                List<Produto> produtos = (snapshot.data as List<dynamic>)
+                    .map((item) => Produto.fromJson(item))
+                    .toList();
+                    print("Aqui aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                print(produtos[0].title);
+                return TelaProdutos(produtos);
+              }
+            }
+          },
+        ),
       },
     );
   }
